@@ -1,9 +1,11 @@
 package tests.appium;
 
 import com.codeborne.selenide.Configuration;
+import config.IAppiumConfig;
 import drivers.AppiumMobileDriver;
 import drivers.BrowserstackMobileDriver;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,6 +21,8 @@ import static io.qameta.allure.Allure.step;
 
 public class AppiumTestBase {
 
+    public static IAppiumConfig APPIUM_CONFIG = ConfigFactory.create(IAppiumConfig.class, System.getProperties());
+
     @BeforeAll
     public static void beforeAll() {
         addListener("AllureSelenide", new AllureSelenide());
@@ -30,7 +34,7 @@ public class AppiumTestBase {
 
     @BeforeEach
     void startDriver() {
-        step("Open application", ()-> open());
+        step("Open application", () -> open());
     }
 
     @AfterEach

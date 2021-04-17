@@ -17,7 +17,7 @@ public class BrowserstackAndroidTests extends BrowserstackTestBase {
     @Test
     @Tag("smoke")
     @DisplayName("Successful search in wikipedia android app")
-    void searchTest() {
+    void searchByName() {
         step("Type search", () -> {
             $(AccessibilityId("Search Wikipedia")).click();
             $(MobileBy.id("org.wikipedia.alpha:id/search_src_text")).setValue("BrowserStack");

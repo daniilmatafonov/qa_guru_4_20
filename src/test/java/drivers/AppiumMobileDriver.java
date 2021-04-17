@@ -10,21 +10,21 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static tests.appium.AppiumTestBase.APPIUM_CONFIG;
 
 public class AppiumMobileDriver implements WebDriverProvider {
 
     @Override
     public WebDriver createDriver(DesiredCapabilities capabilities) {
-        capabilities.setCapability("automationName", "Appium");
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("deviceName", "RF8N71SMG0H");
-        capabilities.setCapability("version", "11.0");
-        capabilities.setCapability("locale", "en");
-        capabilities.setCapability("language", "en");
-
-        capabilities.setCapability("appPackage", "org.wikipedia.alpha");
-        capabilities.setCapability("appActivity", "org.wikipedia.main.MainActivity");
-        capabilities.setCapability("app", getAbsolutePath("src/test/resources/apps/app-alpha-universal-release.apk"));
+        capabilities.setCapability("automationName", APPIUM_CONFIG.automationName());
+        capabilities.setCapability("platformName", APPIUM_CONFIG.platformName());
+        capabilities.setCapability("deviceName", APPIUM_CONFIG.deviceName());
+        capabilities.setCapability("version", APPIUM_CONFIG.version());
+        capabilities.setCapability("locale", APPIUM_CONFIG.locale());
+        capabilities.setCapability("language", APPIUM_CONFIG.language());
+        capabilities.setCapability("appPackage", APPIUM_CONFIG.appPackage());
+        capabilities.setCapability("appActivity", APPIUM_CONFIG.appActivity());
+        capabilities.setCapability("app", getAbsolutePath(APPIUM_CONFIG.app()));
 
 
         return new AndroidDriver(getAppiumServerUrl(), capabilities);

@@ -8,20 +8,22 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static tests.browserstack.BrowserstackTestBase.BROWSER_STACK_CONFIG;
+
 public class BrowserstackMobileDriver implements WebDriverProvider {
 
     @Override
     public WebDriver createDriver(DesiredCapabilities capabilities) {
-        capabilities.setCapability("browserstack.user", "daniilmatafonov1");
-        capabilities.setCapability("browserstack.key", "BdGpepMx8e9EhhxExqqj");
-        capabilities.setCapability("app_url", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
-        capabilities.setCapability("appPackage", "org.wikipedia.alpha");
-        capabilities.setCapability("appActivity", "org.wikipedia.main.MainActivity");
-        capabilities.setCapability("device", "Google Pixel 4");
-        capabilities.setCapability("os_version", "11.0");
-        capabilities.setCapability("project", "First Java Project");
-        capabilities.setCapability("build", "Java Android");
-        capabilities.setCapability("name", "first_test");
+        capabilities.setCapability("browserstack.user", BROWSER_STACK_CONFIG.browserstackUser());
+        capabilities.setCapability("browserstack.key", BROWSER_STACK_CONFIG.browserstackKey());
+        capabilities.setCapability("app_url", BROWSER_STACK_CONFIG.appUrl());
+        capabilities.setCapability("appPackage", BROWSER_STACK_CONFIG.appPackage());
+        capabilities.setCapability("appActivity", BROWSER_STACK_CONFIG.appActivity());
+        capabilities.setCapability("device", BROWSER_STACK_CONFIG.device());
+        capabilities.setCapability("os_version", BROWSER_STACK_CONFIG.osVersion());
+        capabilities.setCapability("project", BROWSER_STACK_CONFIG.project());
+        capabilities.setCapability("build", BROWSER_STACK_CONFIG.build());
+        capabilities.setCapability("name", BROWSER_STACK_CONFIG.name());
 
         return new AndroidDriver(getBrowserstackUrl(), capabilities);
     }

@@ -1,8 +1,10 @@
 package tests.browserstack;
 
 import com.codeborne.selenide.Configuration;
+import config.IBrowserStackConfig;
 import drivers.BrowserstackMobileDriver;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,6 +21,8 @@ import static io.qameta.allure.Allure.step;
 
 public class BrowserstackTestBase {
 
+    public static IBrowserStackConfig BROWSER_STACK_CONFIG = ConfigFactory.create(IBrowserStackConfig.class, System.getProperties());
+
     @BeforeAll
     public static void beforeAll() {
         addListener("AllureSelenide", new AllureSelenide());
@@ -30,7 +34,7 @@ public class BrowserstackTestBase {
 
     @BeforeEach
     void startDriver() {
-        step("Open application", ()-> open());
+        step("Open application", () -> open());
     }
 
     @AfterEach
@@ -46,7 +50,7 @@ public class BrowserstackTestBase {
         attachVideo(sessionId);
     }
 
-    public static String getSessionId(){
+    public static String getSessionId() {
         return ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
     }
 }

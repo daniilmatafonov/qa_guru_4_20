@@ -3,15 +3,18 @@ package helpers;
 import org.apache.http.HttpStatus;
 
 import static io.restassured.RestAssured.given;
+import static tests.browserstack.BrowserstackTestBase.BROWSER_STACK_CONFIG;
 
 
 public class BrowserstackHelper {
 
+    public static final String BROWSER_STACK_SESSIONS = "https://api-cloud.browserstack.com/app-automate/sessions/";
+
     public static String getBrowserstackVideoUrl(String sessionId) {
         String video_url = given()
-                .auth().basic("daniilmatafonov1", "BdGpepMx8e9EhhxExqqj")
+                .auth().basic(BROWSER_STACK_CONFIG.browserstackUser(), BROWSER_STACK_CONFIG.browserstackKey())
                 .when()
-                .get("https://api-cloud.browserstack.com/app-automate/sessions/" + sessionId +".json")
+                .get(BROWSER_STACK_SESSIONS + sessionId +".json")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
@@ -24,7 +27,7 @@ public class BrowserstackHelper {
 
     public static String getBSPublicLink(String sessionId){
         String publicUrl = given()
-                .auth().basic("daniilmatafonov1", "BdGpepMx8e9EhhxExqqj")
+                .auth().basic(BROWSER_STACK_CONFIG.browserstackUser(), BROWSER_STACK_CONFIG.browserstackKey())
                 .when()
                 .get("https://api-cloud.browserstack.com/app-automate/sessions/" + sessionId +".json")
                 .then()
