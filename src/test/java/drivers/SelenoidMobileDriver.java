@@ -7,7 +7,10 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
 
+import static com.codeborne.selenide.impl.Cleanup.of;
+import static com.google.common.base.Optional.of;
 import static tests.selenoid.SelenoidTestBase.SELENOID_CONFIG;
 
 public class SelenoidMobileDriver implements WebDriverProvider {
@@ -22,6 +25,10 @@ public class SelenoidMobileDriver implements WebDriverProvider {
         capabilities.setCapability("language", SELENOID_CONFIG.language());
         capabilities.setCapability("appPackage", SELENOID_CONFIG.appPackage());
         capabilities.setCapability("appActivity", SELENOID_CONFIG.appActivity());
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true));
+        capabilities.setCapability("enableVideo", true);
         capabilities.setCapability("app", apk());
 
 
