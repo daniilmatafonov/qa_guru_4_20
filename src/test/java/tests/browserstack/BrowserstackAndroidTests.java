@@ -15,7 +15,7 @@ import static io.qameta.allure.Allure.step;
 public class BrowserstackAndroidTests extends BrowserstackTestBase {
 
     @Test
-    @Tag("smoke")
+    @Tag("browserstack")
     @DisplayName("Successful search in wikipedia android app")
     void searchByName() {
         step("Type search", () -> {

@@ -1,4 +1,4 @@
-package tests.appium;
+package tests.selenoid;
 
 import io.appium.java_client.MobileBy;
 import org.junit.jupiter.api.DisplayName;
@@ -10,12 +10,10 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.appium.java_client.MobileBy.AccessibilityId;
 import static io.qameta.allure.Allure.step;
 
-@Tag("android")
-@Tag("appium")
-public class AppiumAndroidTests extends AppiumTestBase {
+@Tag("selenoid")
+public class SelenoidTests extends SelenoidTestBase {
 
     @Test
-    @Tag("appium")
     @DisplayName("Successful search in wikipedia android app")
     void searchTest() {
         back();

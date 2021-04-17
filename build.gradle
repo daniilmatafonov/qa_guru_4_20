@@ -57,9 +57,21 @@ tasks.withType(Test) {
     }
 }
 
-task smoke_tests(type: Test) {
+task appium_tests(type: Test) {
     useJUnitPlatform {
-        includeTags 'smoke'
+        includeTags 'appium'
+    }
+}
+
+task selenoid_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags 'selenoid'
+    }
+}
+
+task browserstack_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags 'browserstack'
     }
 }
 
